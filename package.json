@@ -5,13 +5,14 @@
   "main": "canvas.js",
   "scripts": {
     "start": "node server.js",
-     "dev" : "nodemon server.js"
+   "dev": "cross-env NODE_ENV=development nodemon server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "cross-env": "^10.1.0",
     "express": "^5.2.1"
   },
   "devDependencies": {
