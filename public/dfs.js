@@ -12,8 +12,8 @@ dfsBtn.addEventListener('click',async ()=>{
 let adjList =Array.from({ length: vertices.length }, () => []);
  
 edges.forEach((element,idx) => {
-    adjList[element.idx1-1].push(element.idx2-1);  
- adjList[element.idx2-1].push(element.idx1-1);  
+    adjList[element.idx1].push(element.idx2);  
+ adjList[element.idx2].push(element.idx1);  
     
 });
 console.log(adjList);

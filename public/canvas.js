@@ -57,23 +57,21 @@ canvas.addEventListener('mousedown',(event)=>{
 
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
-  let idx =0;
     for(let v of vertices){
-        idx++;
+        
         if(isClickInsideCircle(mouseX,mouseY,v.x,v.y,20)){
             grabbedNode = v;
             isGrabing = true;
             v.color = "#10b981";
             currEdge.push(v);
-            currEdge[currEdge.length-1]["idx"] = idx;
             if(currEdge.length == 2){
 
                 edges.push({
                     "node_1" :  currEdge[0],
                     "node_2" : currEdge[1],
                     "color" : "red",
-                    "idx1": currEdge[0]["idx"],
-                    "idx2" : currEdge[1]["idx"],
+                    "idx1": currEdge[0].id,
+                    "idx2" : currEdge[1].id,
                 });
                 currEdge[0].color = "#3b82f6";
                 currEdge[1].color = "#3b82f6";
@@ -87,7 +85,7 @@ canvas.addEventListener('mousedown',(event)=>{
     }
 
 
-    vertices.push({"x":mouseX,"y":mouseY,"color":"#3b82f6"});
+    vertices.push({id: vertices.length,"x":mouseX,"y":mouseY,"color":"#3b82f6"});
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawGraph();     
      
