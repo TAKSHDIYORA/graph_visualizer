@@ -1,4 +1,4 @@
-import {drawGraph,edges,vertices, CreationDisable,setCreationDisable} from './canvas.js';
+import {drawGraph,edges,vertices, CreationDisable,setCreationDisable} from './canvas.mjs';
 
 let dfsBtn = document.getElementById("dfsBtn");
 
