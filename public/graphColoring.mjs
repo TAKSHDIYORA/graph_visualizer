@@ -81,13 +81,18 @@ edges.forEach((element,idx) => {
  adjList[element.idx2].push(element.idx1);      
 });
 let m = parseInt(setColors.value,10);
+for(let i =0 ;i<vertices.length;i++){
+    vertices[i].color = "lightgray";
+} 
+drawGraph();
+await sleep(1000);
 await dfs(m,adjList);
 console.log(adjList); 
 for(let i =0 ;i<vertices.length;i++){
     vertices[i].color = "blue";
 } 
-sleep(5000);
+await sleep(5000);
 drawGraph();
-sleep(1000);
+await sleep(1000);
 setCreationDisable(false); 
 });
