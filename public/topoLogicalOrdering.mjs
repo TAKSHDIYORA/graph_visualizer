@@ -1,9 +1,9 @@
 import {drawGraph,edges,vertices, CreationDisable,setCreationDisable} from './canvas.mjs';
 
-let cycleBtn = document.getElementById("cycleBtn");
+let topoBtn = document.getElementById("topoBtn");
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-cycleBtn.addEventListener('click',async ()=>{
+topoBtn.addEventListener('click',async ()=>{
     if(CreationDisable){
             window.alert("can't do anything while algo visualization");
             return;
@@ -28,6 +28,9 @@ for(let x in vertices){
 
 while(queue.length!=0){
     let node = queue[0];
+    vertices[node].color = "#f43f5e";
+    drawGraph();
+    await sleep(350);
     queue.shift();
     for(let adj of adjList[node]){
          inDegree[adj]--;
@@ -46,12 +49,14 @@ for(let x in vertices){
 }
 
 if(cycle){
-  window.alert("there is an cycle in a graph rebuild the graph.");
-}else{
-    window.alert("there is no cycle in a graph.");
+  window.alert("there is an cycle in a graph rebuild the graph without cycle for topo sort");
 }
 
-
+for(let node in vertices){
+    vertices[node].color = "#6366f1";
+}
+drawGraph();
+sleep(100);
 setCreationDisable(false);
    
 });

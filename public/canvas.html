@@ -1,94 +1,169 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-        <style>
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #121214;
-        color: #e2e8f0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-    }
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Graph Studio</title>
+    <meta
+      name="description"
+      content="Build graphs and visualize popular graph algorithms."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div class="brand-copy">
+            <h1>Graph Studio</h1>
+            <p>Build, connect, and explore graph algorithms.</p>
+          </div>
+        </div>
+        <div class="status-pill">Ready to build</div>
+      </header>
 
-    h1 {
-        margin-bottom: 5px;
-        font-weight: 600;
-        letter-spacing: -0.5px;
-    }
+      <section class="workspace" aria-label="Graph visualizer workspace">
+        <div class="canvas-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Workspace</p>
+              <h2>Build your graph</h2>
+              <p class="section-description">
+                Add nodes, connect them, then choose an algorithm to watch the
+                graph come alive.
+              </p>
+            </div>
+          </div>
 
-    #controls {
-        margin: 15px 0;
-        display: flex;
-        gap: 12px;
-    }
+          <div class="canvas-stage">
+            <canvas
+              id="myCanvas"
+              width="1000"
+              height="750"
+              aria-label="Interactive graph canvas"
+            ></canvas>
+          </div>
 
-    button {
-        background-color: #1e1e24;
-        color: #3b82f6; /* Modern electric blue accent */
-        border: 1px solid #2e2e38;
-        padding: 10px 20px;
-        border-radius: 8px;
-        font-weight: 600;
-        font-size: 14px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
+          <div class="canvas-tip">
+            <kbd>Click</kbd> empty space to add a node · Select two nodes to
+            connect · Drag to move
+          </div>
+        </div>
 
-    button:hover {
-        background-color: #3b82f6;
-        color: #ffffff;
-        border-color: #3b82f6;
-        box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
-    }
+        <aside class="control-panel" aria-label="Graph controls">
+          <div class="panel-header">
+            <aside class="control-panel" aria-label="Graph controls">
+    <div class="panel-header">
+        <h3 class="panel-title">Algorithm controls</h3>
+        <p class="panel-subtitle">Choose how you want to explore the graph.</p>
+    </div>
+
+    <div class="control-group" style="margin-top: 0; padding-top: 16px; border-top: none;">
+        <span class="group-label">Global Settings</span>
+        <div class="button-stack">
+            <label class="toggle-row">
+                <span class="toggle-label" id="directedLabel">Undirected Graph</span>
+                <input id="directedCheck" type="checkbox" class="toggle-switch">
+            </label>
+        </div>
+    </div>
+
+          <div class="control-group">
+            <span class="group-label">Traversal</span>
+            <div class="button-stack">
+              <button id="dfsBtn" type="button">Depth-first search</button>
+              <button id="bfsBtn" type="button">Breadth-first search</button>
+              <button id="topoBtn" type="button">TopoLogical sort</button>
+              <button id="cycleBtn" type="button">Check cycle</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <span class="group-label">Graph analysis</span>
+            <div class="button-stack">
+              <button id="NoOfProvincesBtn" type="button">
+                Count provinces
+              </button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <span class="group-label">Shortest Path</span>
+            <div class="button-stack">
+              <label class="toggle-row">
+                <span class="toggle-label">Unit Distance</span>
+                <input
+                  id="unitDistanceCheck"
+                  type="checkbox"
+                  class="toggle-switch"
+                />
+              </label>
+
+              <div class="grid-row-2">
+                <input
+                  id="srcInput"
+                  type="number"
+                  min="0"
+                  placeholder="Source (e.g. 0)"
+                />
+                <input
+                  id="destInput"
+                  type="number"
+                  min="0"
+                  placeholder="Target (e.g. 3)"
+                />
+              </div>
+
+              <button id="shortestPathBtn" type="button">
+                Find Shortest Path
+              </button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <span class="group-label">Coloring</span>
+            <label class="field-label" for="setMcolor"
+              >Maximum number of colors</label
+            >
+            <div class="input-row">
+              <input
+                id="setMcolor"
+                type="number"
+                min="1"
+                value="2"
+                placeholder="Colors"
+              />
+              <button id="MColorBtn" type="button">Run</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <span class="group-label">Quick start</span>
+            <ol class="mini-guide">
+              <li>Create a few nodes on the canvas.</li>
+              <li>Connect nodes by selecting them in pairs.</li>
+              <li>Run an algorithm and watch each step.</li>
+            </ol>
+          </div>
+
+          <div class="control-group">
+            <button id="clearBtn" type="button">Clear canvas</button>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script type="module" src="canvas.mjs"></script>
+    <script type="module" src="dfs.mjs"></script>
+    <script type="module" src="bfs.mjs"></script>
+    <script type="module" src="graphColoring.mjs"></script>
+    <script type="module" src="NoOfProvinces.mjs"></script>
+    <script type="module" src="topoLogicalOrdering.mjs"></script>
+    <script type="module" src="CheckCycle.mjs"></script>
+        <script type="module" src="shortest_path.mjs"></script>
     
-    #clearBtn {
-        color: #ef4444; /* Dark pink/red warn color */
-        border-color: rgba(239, 68, 68, 0.2);
-    }
-    #dfsBtn {
-        color: #162c8a; /* Dark pink/red warn color */
-        border-color: rgba(239, 68, 68, 0.2);
-    }
-    #clearBtn:hover {
-        background-color: #ef4444;
-        color: white;
-        box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
-    }
-
-    canvas {
-        background-color: #18181c;
-        border: 2px solid #2b2b36;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-</style>
-    </head>
-    <body>
-        <canvas id="myCanvas" width="400" height="300" style="border: 1px solid white; background: #111;"></canvas>
-        <button id="clearBtn">clear</button>
-        <button id="dfsBtn">DFS</button>
-        <button id="bfsBtn">BFS</button>
-        <label>Set number of colors for mcoloring algorithm</label><input id="setMcolor" type="number" value="2" placeholder="Add number of colors">
-         <button id="MColorBtn">MColor</button>
-           <button id="NoOfProvincesBtn">NoOfProvinces</button>
-        <script type="module" src="canvas.mjs">         
-        </script>
-        <script type="module"  src="dfs.mjs">         
-        </script>
-        <script type="module"  src="bfs.mjs">         
-        </script>
-        <script type="module"  src="graphColoring.mjs">         
-        </script>
-        <script type="module"  src="NoOfProvinces.mjs">         
-        </script>
-    </body>
+    
+</body>
 </html>

@@ -39,15 +39,15 @@ console.log(adjList);
            if(visited[x]){
             continue;
            }
-           vertices[x].color="red";
+           vertices[x].color="#f43f5e";
            if(prevNode!=-1){
-           vertices[prevNode].color = "#3b82f6";
+           vertices[prevNode].color = "#6366f1";
            }
             prevNode=x;
            drawGraph();
            
     
-           await sleep(1000);
+           await sleep(650);
            visited[x]=true;
            for(let ele of adjList[x]){
             if(visited[ele]==false){
@@ -59,7 +59,7 @@ console.log(adjList);
             
  }
    if(prevNode!=-1){
-     vertices[prevNode].color = "#3b82f6";
+     vertices[prevNode].color = "#6366f1";
      drawGraph();
    }
 

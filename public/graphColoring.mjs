@@ -34,15 +34,15 @@ async function MColor(node,adjList,visited,colors){
    console.log(vertices,colors);
    
           drawGraph();
-          await sleep(1000);
+          await sleep(650);
               const success = await MColor(node+1,adjList,visited,colors);
               if(success){
                 return true;
               }
               visited[node] = "blue"; // Visual reset indicator
-            vertices[node].color = "blue";
+            vertices[node].color = "#6366f1";
             drawGraph();
-            await sleep(500);
+            await sleep(300);
          }
      }
      return false;
@@ -85,14 +85,14 @@ for(let i =0 ;i<vertices.length;i++){
     vertices[i].color = "lightgray";
 } 
 drawGraph();
-await sleep(1000);
+await sleep(650);
 await dfs(m,adjList);
 console.log(adjList); 
 for(let i =0 ;i<vertices.length;i++){
-    vertices[i].color = "blue";
+    vertices[i].color = "#6366f1";
 } 
-await sleep(5000);
+await sleep(2200);
 drawGraph();
-await sleep(1000);
+await sleep(650);
 setCreationDisable(false); 
 });

@@ -23,7 +23,7 @@ async function dfsVisit(node,adjList,visited,color){
         }
         vertices[adjNode].color=color;
         drawGraph();
-        await sleep(1000);
+        await sleep(650);
         await dfsVisit(adjNode,adjList,visited,color);
     }
     
@@ -38,7 +38,7 @@ async function dfs(adjList){
             let color = getSequentialColor(i);
                 vertices[i].color = color;
                 drawGraph();
-                await sleep(1000);
+                await sleep(650);
            await dfsVisit(i,adjList,visited,color);         
         }
      }
@@ -65,14 +65,14 @@ for(let i =0 ;i<vertices.length;i++){
     vertices[i].color = "lightgray";
 } 
 drawGraph();
-await sleep(1000);
+await sleep(650);
 await dfs(adjList);
 console.log(adjList); 
 for(let i =0 ;i<vertices.length;i++){
-    vertices[i].color = "blue";
+    vertices[i].color = "#6366f1";
 } 
-await sleep(5000);
+await sleep(2200);
 drawGraph();
-await sleep(1000);
+await sleep(650);
 setCreationDisable(false); 
 });
